@@ -9,7 +9,7 @@ import { Title } from '@angular/platform-browser';
   imports: [NavBarComponent, RouterOutlet],
   template: `
   <div>
-    <h2>Online Shop New Control Flow Demo</h2>
+    <h2 class="text-5xl">Online Shop New Control Flow Demo</h2>
     <app-nav-bar />
     <router-outlet />
   </div>`,

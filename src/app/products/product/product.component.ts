@@ -7,7 +7,7 @@ import { Product } from '../product.interface';
   standalone: true,
   imports: [RouterLink],
   template: `
-    <div class="container">
+    <div class="container bg-gray-100">
       <div class="image-container">
         <img [src]="product.image" alt="image" width="100" height="100" />
       </div>

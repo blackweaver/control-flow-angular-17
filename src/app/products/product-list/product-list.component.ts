@@ -10,30 +10,37 @@ import { ProductService } from '../services/product.service';
   imports: [ProductComponent],
   template: `
     <div>
-      @for (product of products(); track product.id) {
-        <app-product [product]="product" />
-      } @empty {
-        <p>No product to purchase</p>
+      @defer (when products()) { @for (product of products(); track product.id)
+      {
+
+      <app-product [product]="product" />
+
+      } } @loading () {
+      <p>Loading....</p>
+      } @placeholder (minimum 300ms) {
+      <p>No product details</p>
       }
     </div>
   `,
-  styles: [`
-    div {
-      display: flex;
-      flex-wrap: wrap;
-      align-content: stretch;
-    }
+  styles: [
+    `
+      div {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: stretch;
+      }
 
-    app-product {
-      flex-basis: 250px;
-      height: 300px;
-      margin-bottom: 1rem;
-    }
-  `],
+      app-product {
+        flex-basis: 250px;
+        height: 300px;
+        margin-bottom: 1rem;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductListComponent {
   products = toSignal(inject(ProductService).products$, {
-    initialValue: [] as Product[]
+    initialValue: [] as Product[],
   });
 }
